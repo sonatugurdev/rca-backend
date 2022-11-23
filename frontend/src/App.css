@@ -3,13 +3,15 @@
 }
 
 .App-logo {
-  height: 20vmin;
+  height: 35vmin;
   pointer-events: none;
+  margin-top: 20px;
 }
 
 .astronaut-pic {
-  height: 60vmin;
-  pointer-events: none;
+  /* height: 500px;
+  width: 733px;
+  pointer-events: none; */
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -18,9 +20,8 @@
   }
 }
 
-.App-header {
+.App-section1 {
   background-color: #B4D1D3;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,23 +30,102 @@
   color: black;
 }
 
+.App-header {
+  background-color: #B4D1D3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.abode-and-abroad {
+  font-size: '42px';
+  font-weight: 600;
+  line-height: '50px';
+}
+
 .App-link {
   color: #61dafb;
 }
 
 .header-title-1 {
-  font-size: 60px;
+  font-size: 42px;
   font-weight: bold;
-  margin: 0 350px;
+  margin: 35px 60px;
 }
 
-.header-title-2, .header-title-3{
-  font-size: 20px;
+.header-title-2 {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 30px 40px;
 }
 
 .second-section {
   background-color: white;
 }
+
+.section2-title {
+  font-size: 42px;
+  line-height: 48px;
+  font-weight: 600;
+  margin: 40px 75px;
+}
+
+.section2-body1 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  margin: 40px 35px;
+}
+
+.section2-body2 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  margin: 20px 35px;
+}
+
+.App-footer {
+  background: black;
+  color:  white;  
+  padding: 10px 0 30px;
+}
+
+.divider {
+  border-bottom: 2px white solid;
+  margin: 30px 40px;
+}
+
+.support-careers-privacy-terms {
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  font-size: 13px;
+  margin: 22px;
+}
+
+.privacy-policy {
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  font-size: 13px;
+  margin: 22px;
+}
+
+.rights-reserved {
+  font-size: 10px;
+  line-height: 16px;
+}
+
+.underlined {
+  text-decoration: underline;
+}
+
+.contact-us {
+  font-size: 16px;
+  font-weight: 600;
+}
+
 
 .ios-drop-down-arrow {
   position: absolute;
@@ -61,14 +141,14 @@
     transform: rotate(360deg);
   }
 }
-@media (max-width: 320px) {
-  .App-header {
-    background-color: red;
+@media (max-width: 400px) {
+  .App-section1 {
+    /* background-color: red; */
   }
 }
 
-@media (min-width: 320px) and (max-width: 720px) {
-  .App-header {
+@media (min-width: 400px) and (max-width: 720px) {
+  .App-section1 {
     background-color: blue;
   }
 }

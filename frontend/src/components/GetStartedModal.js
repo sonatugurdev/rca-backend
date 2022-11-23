@@ -135,7 +135,7 @@ export function GetStartedModal(props) {
       };
     });
     axios
-      .post("http://localhost:5000/api/v1/users", userData)
+      .post(`http://localhost:5000/api/v1/users`, userData)
       .then((data) => {
         console.log(data);
         setState((prevState) => {
@@ -244,7 +244,7 @@ export function GetStartedModal(props) {
             />
           </div>
           <div className={classes.wrapper}>
-            <Button variant="contained" onClick={handleSubmit} disabled={handleButtonDisabled}>
+            <Button variant="contained" onClick={handleSubmit} disabled={false}>
               Subscribe
             </Button>
             {state.isLoading && (
