@@ -10,6 +10,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { green } from "@material-ui/core/colors";
+import { FrequencyTypes } from '../helpers/utils'
 
 function getModalStyle() {
   const top = 25;
@@ -56,12 +57,12 @@ export function GetStartedModal(props) {
   const [modalStyle] = React.useState(getModalStyle);
   const [openModal, setOpenModal] = React.useState(false);
   const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: false,
-    checkedC: false,
+    frequencyType: props.frequencyType,
     isLoading: false,
     button: false
   });
+
+  console.log(props.frequencyType);
   const nameFieldRef = React.createRef();
   const emailFieldRef = React.createRef();
 
@@ -75,57 +76,40 @@ export function GetStartedModal(props) {
 
   const handleCheckBoxClicks = (event) => {
     Object.keys(state).map((item) => {
-      if (event.target.name === "Aficionado") {
+      if (event.target.name === FrequencyTypes.aficionado) {
         setState((prevState) => {
           return {
             ...prevState,
-            checkedA: true,
-            checkedB: false,
-            checkedC: false,
+            frequencyType: FrequencyTypes.aficionado
           };
         });
-      } else if (event.target.name === "Associate") {
+      } else if (event.target.name === FrequencyTypes.apprentice) {
         setState((prevState) => {
           return {
             ...prevState,
-            checkedA: false,
-            checkedB: true,
-            checkedC: false,
+            frequencyType: FrequencyTypes.apprentice
           };
         });
       } else {
         setState((prevState) => {
           return {
             ...prevState,
-            checkedA: false,
-            checkedB: false,
-            checkedC: true,
+            frequencyType: FrequencyTypes.associate
           };
         });
       }
     });
   };
 
-  const getSubscriptionType = () => {
-    if (state.checkedA) {
-      return "Aficionado";
-    } else if (state.checkedB) {
-      return "Associate";
-    } else {
-      return "Apprentice";
-    }
-  };
-
   const handleSubmit = () => {
     // submitform
     const name = nameFieldRef.current.value;
     const email = emailFieldRef.current.value;
-    const subscriptionType = getSubscriptionType();
 
     const userData = {
       name,
       email,
-      subscriptionType,
+      subscriptionType: state.frequencyType,
     };
     console.log(userData);
     setState((prevState) => {
@@ -163,6 +147,16 @@ export function GetStartedModal(props) {
       setOpenModal(true);
     }
   }, [props.shouldOpen]);
+
+
+  React.useEffect(() => {
+    setState((prevState) => {
+      return {
+        ...prevState,
+        frequencyType: props.frequencyType
+      };
+    });
+  }, [props.frequencyType])
 
   const handleButtonDisabled = () => {
     console.log(emailFieldRef.current.value, nameFieldRef.current.value, !state.isLoading)
@@ -208,9 +202,9 @@ export function GetStartedModal(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={state.checkedA}
+                  checked={state.frequencyType === FrequencyTypes.aficionado}
                   onChange={handleCheckBoxClicks}
-                  name="Aficionado"
+                  name={FrequencyTypes.aficionado}
                   color="primary"
                   inputProps={{ "aria-label": "primary checkbox" }}
                 />
@@ -221,26 +215,26 @@ export function GetStartedModal(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={state.checkedB}
+                  checked={state.frequencyType === FrequencyTypes.apprentice}
                   onChange={handleCheckBoxClicks}
-                  name="Associate"
-                  color="primary"
-                  inputProps={{ "aria-label": "primary checkbox" }}
-                />
-              }
-              label="Associate"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={state.checkedC}
-                  onChange={handleCheckBoxClicks}
-                  name="Apprentice"
+                  name={FrequencyTypes.apprentice}
                   color="primary"
                   inputProps={{ "aria-label": "primary checkbox" }}
                 />
               }
               label="Apprentice"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={state.frequencyType === FrequencyTypes.associate}
+                  onChange={handleCheckBoxClicks}
+                  name={FrequencyTypes.associate}
+                  color="primary"
+                  inputProps={{ "aria-label": "primary checkbox" }}
+                />
+              }
+              label="Associate"
             />
           </div>
           <div className={classes.wrapper}>
