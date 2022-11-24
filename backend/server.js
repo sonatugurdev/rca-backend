@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const errorHandler = require('./helpers/errorHandler')
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 
 const app = express();
 

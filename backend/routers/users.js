@@ -19,13 +19,16 @@ router.post(`/`, async (req, res) => {
     subscriptionType
   } = req.body;
 
+
   const user = new User({
     name,
     email,
     subscriptionType
   })
+  console.log(user);
   
   const newUser = await user.save();
+  console.log(newUser);
 
   if (!newUser) {
     res.status(404).send('user cannot be created');
