@@ -119,7 +119,7 @@ export function GetStartedModal(props) {
       };
     });
     axios
-      .post(`http://localhost:5000/api/v1/users`, userData)
+      .post(`${window.location.href}api/v1/users`, userData)
       .then((data) => {
         console.log(data);
         setState((prevState) => {
