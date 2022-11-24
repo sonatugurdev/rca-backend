@@ -25,9 +25,9 @@ const usersRoutes = require('./routers/users');
 
 const api = process.env.API_URL;
 
-app.use(`${api}/users`, usersRoutes);
+app.use(`${api}/users` , usersRoutes);
 
-mongoose.connect(process.env.DB_CONNECTION_URL, {
+mongoose.connect(process.env.D_CONNECTION_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   dbName: 'beyyoglu-database',
