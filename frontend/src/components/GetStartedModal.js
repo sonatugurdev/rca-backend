@@ -11,13 +11,22 @@ import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { green } from "@material-ui/core/colors";
 import { FrequencyTypes } from '../helpers/utils'
+import { get } from 'lodash';
+import { AppLogo } from "../svgs/AppLogo";
+import { ShitFace } from "../svgs/ShitFace";
 
 function getModalStyle() {
   const top = 25;
 
   return {
     top: `${top}%`,
-    margin: "0 auto",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '75%',
+    margin: "0 4%",
+    border: 'none',
+    borderRadius: '6px',
     // transform: `translate(-${top}%, -${left}%)`,
   };
 }
@@ -37,17 +46,13 @@ const useStyles = makeStyles((theme) => ({
       width: "25ch",
     },
   },
-  buttonProgress: {
-    color: green[500],
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    marginTop: -12,
-    marginLeft: -12,
-  },
-  wrapper: {
-    margin: theme.spacing(1),
-    position: "relative",
+  button: {
+    textTransform: "none",
+    background: "black",
+    color: "white",
+    height: "54px",
+    width: "185px",
+    marginBottom: "35px",
   },
 }));
 
@@ -59,10 +64,10 @@ export function GetStartedModal(props) {
   const [state, setState] = React.useState({
     frequencyType: props.frequencyType,
     isLoading: false,
-    button: false
+    shouldButtonDisabled: true,
+    success: false,
   });
 
-  console.log(props.frequencyType);
   const nameFieldRef = React.createRef();
   const emailFieldRef = React.createRef();
 
@@ -71,7 +76,27 @@ export function GetStartedModal(props) {
   };
 
   const handleChangeTextField = (e) => {
-    console.log(e.target.value);
+    const emailVal = get(emailFieldRef, 'current.value');
+    const nameVal = get(nameFieldRef, 'current.value');
+    
+    console.log(emailVal, nameVal, !state.isLoading, 'SSSSS')
+    if (emailVal &&
+      nameVal && 
+       !state.isLoading) {
+        setState((prevState) => {
+          return {
+            ...prevState,
+            shouldButtonDisabled: false,
+          };
+        });
+       } else {
+        setState((prevState) => {
+          return {
+            ...prevState,
+            shouldButtonDisabled: true,
+          };
+        });
+       }
   };
 
   const handleCheckBoxClicks = (event) => {
@@ -101,7 +126,7 @@ export function GetStartedModal(props) {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // submitform
     const name = nameFieldRef.current.value;
     const email = emailFieldRef.current.value;
@@ -111,34 +136,37 @@ export function GetStartedModal(props) {
       email,
       subscriptionType: state.frequencyType,
     };
-    console.log(userData);
     setState((prevState) => {
       return {
         ...prevState,
         isLoading: true,
       };
     });
+
     axios
       .post(`${window.location.href}api/users`, userData)
       .then((data) => {
-        console.log(data);
-        setState((prevState) => {
-          return {
-            ...prevState,
-            isLoading: false,
-          };
-        });
-        setOpenModal(false);
+        setTimeout(() => {
+          setState((prevState) => {
+            return {
+              ...prevState,
+              isLoading: false,
+              success: true,
+            };
+          });
+        }, 2000);
       })
       .catch((err) => {
-        setState((prevState) => {
-          return {
-            ...prevState,
-            isLoading: false,
-          };
-        });
-        setOpenModal(false);
-        alert("Something went wrong. Please try again!");
+        setTimeout(() => {
+          setState((prevState) => {
+            return {
+              ...prevState,
+              isLoading: false,
+              success: true,
+              failed: true,
+            };
+          });
+        }, 2000);
       });
   };
 
@@ -159,14 +187,7 @@ export function GetStartedModal(props) {
   }, [props.frequencyType])
 
   const handleButtonDisabled = () => {
-    console.log(emailFieldRef.current.value, nameFieldRef.current.value, !state.isLoading)
-    if (emailFieldRef.current.value &&
-       nameFieldRef.current.value && 
-       !state.isLoading) {
-         return false;
-       } else {
-         return true;
-       }
+
   }
 
   const body = (
@@ -238,7 +259,7 @@ export function GetStartedModal(props) {
             />
           </div>
           <div className={classes.wrapper}>
-            <Button variant="contained" onClick={handleSubmit} disabled={false}>
+            <Button variant="contained" onClick={handleSubmit} disabled={state.shouldButtonDisabled} className={classes.button}>
               Subscribe
             </Button>
             {state.isLoading && (
@@ -250,14 +271,32 @@ export function GetStartedModal(props) {
     </Fade>
   );
 
+  const successScreen = (
+    <Fade in={openModal}>
+      <div style={modalStyle} className={classes.paper}>
+        <div>
+            <AppLogo width="100px" height="100px"/>
+          </div>
+        <div className="cleanestBumInTown">
+        Get ready to have the cleanest bum in town.
+        </div>
+
+        <div className="weWillBeInTouch">
+        We’ll be in touch with your order details shortly!
+        </div>
+        <ShitFace width="25px" height="25px"/>
+      </div>
+    </Fade>
+  );
+
   return (
     <div>
       <Modal
         open={openModal}
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          // display: "flex",
+          // alignItems: "center",
+          // justifyContent: "center",
         }}
         onClose={handleCloseModal}
         closeAfterTransition
@@ -266,7 +305,7 @@ export function GetStartedModal(props) {
           timeout: 500,
         }}
       >
-        {body}
+        {!state.success ? body : successScreen}
       </Modal>
     </div>
   );

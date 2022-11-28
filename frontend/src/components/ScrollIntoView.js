@@ -1,18 +1,15 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as React from "react";
 
-export class ScrollIntoView extends React.Component {
-  DOMNode;
-  componentDidMount() {
-    this.DOMNode = ReactDOM.findDOMNode(this);
-  }
-  componentDidUpdate() {
-    if (this.props.shouldScroll) {
-      this.DOMNode.scrollIntoView({ behavior: 'smooth', block: 'start' });
+export const ScrollIntoView = (props) => {
+  const targetElement = React.useRef();
+  React.useEffect(() => {
+    if (props.shouldScroll) {
+      targetElement.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     }
-  }
+  }, [props.shouldScroll]);
 
-  render() {
-    return <React.Fragment>{this.props.children}</React.Fragment>;
-  }
-}
+  return <div ref={targetElement}>{props.children}</div>;
+};

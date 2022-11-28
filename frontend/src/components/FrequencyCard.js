@@ -1,10 +1,16 @@
 import React from "react";
+import { ShitFace } from "../svgs/ShitFace";
 import { TickMark } from "../svgs/TickMark";
 
 export function FrequencyCard(props) {
   return (
     <div className={props.selected ? "frequencyCardSelected" : "frequencyCard"}>
-      <div></div>
+      <div className="shitFaceContainer">
+        <ShitFace />
+        {props.frequencyType === 'apprentice' && <ShitFace />}
+        {props.frequencyType === 'aficionado' && <React.Fragment><ShitFace /><ShitFace /></React.Fragment>}
+
+      </div>
       <div className="frequencycard-text">
         <div className="frequencycard-text-1">
           {props.frequencyType === 'aficionado' && "Real Clean Aficionado"}
