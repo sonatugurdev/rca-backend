@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   overflow: auto;
+  font-family: "Georgia";
 }
 
 .App-logo {
@@ -36,6 +37,7 @@
 }
 
 .App-section1 {
+  width: 100%;
   background-color: #B4D1D3;
   display: flex;
   flex-direction: column;
@@ -64,8 +66,10 @@
 
 .header-title-1 {
   font-size: 42px;
-  font-weight: bold;
-  margin: 35px 60px;
+  font-weight: 600;
+  line-height: 50px;
+  margin: 35px 40px;
+  font-family: "Poppins";
 }
 
 .header-title-2 {
@@ -83,6 +87,7 @@
   line-height: 48px;
   font-weight: 600;
   margin: 40px 75px;
+  font-family: "Poppins";
 }
 
 .section2-body1 {
@@ -112,7 +117,8 @@
   font-size: 42px;
   line-height: 48px;
   font-weight: 600;
-  margin: 40px 75px;
+  margin: 40px 50px;
+  font-family: "Poppins";
 }
 
 .section3-body1 {
@@ -146,19 +152,24 @@
   width: 55px;
   height: 55px;
   margin:  7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
 }
 
 .frequencycard-text {
   display: flex;
   flex-direction: column;
   text-align: initial;
+  margin:  7px 0;
 }
 
 .frequencycard-text-1 {
-  margin-left: 10px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-family: "Poppins";
+}
+
+.apprentice-shit-logo {
+
 }
 
 .frequencycard-text-list {
@@ -166,12 +177,11 @@
   color: #64626A;
   line-height: 15px;
   font-weight: 400;
-  padding-left: 20px;
 }
 
 .frequencycard-tick {
   position: absolute;
-  right: 30px;
+  right: 7px;
   top: 10px;
 }
 
@@ -182,19 +192,79 @@
   margin: 20px auto;
 }
 
-.App-section4 {
+.section4-title {
+  font-size: 42px;
+  line-height: 48px;
+  font-weight: 600;
+  margin: 40px 75px;
+  font-family: "Poppins";
+}
+
+.review {
+  margin: 10px;
+}
+
+.App-section5 {
 
 }
 
-.section4-title {
+.section5-title {
   font-size: 42px;
   line-height: 48px;
   font-weight: 600;
   margin: 40px 75px;
 }
 
-.review {
-  margin: 10px;
+.section5-body1 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  margin: 40px 35px;
+}
+
+.section5-body-text {
+  margin-top: 15px;
+}
+
+.teamwok-tiles {
+
+}
+
+.teamwork-tiles-each-row {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 30px;
+}
+
+.section5-title {
+  font-size: 42px;
+  line-height: 48px;
+  font-weight: 600;
+  margin: 40px 75px;
+}
+
+.section6-title {
+  font-size: 42px;
+  line-height: 48px;
+  font-weight: 600;
+  margin: 40px 75px;
+  font-family: "Poppins";
+}
+
+.profile-pictures {
+  font-weight: 600;
+  font-family: "Poppins";
+  margin-top: 20px;
+  font-size: 22px;
+}
+
+.profile-description {
+  color: #828283;
+  margin: 10px 30px 20px;
+}
+
+.FAQ1 {
+  background-color: #B4D1D3;
 }
 
 
@@ -264,4 +334,16 @@
   .App-section1 {
     /* background-color: blue; */
   }
+}
+
+@font-face {
+  font-family: "Georgia";   /*Can be any text*/
+  src: local("GeorgiaRegular"),
+    url("./fonts/GeorgiaRegularFont.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins";   /*Can be any text*/
+  src: local("PoppinsRegular"),
+    url("./fonts/PoppinsRegular.ttf") format("truetype");
 }

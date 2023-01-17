@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
-import { IoIosArrowDropdown } from "react-icons/io";
+import {
+  ExpansionPanel,
+  ExpansionPanelSummary,
+  ExpansionPanelDetails,
+} from '@material-ui/core';
 import { ScrollIntoView } from "./components/ScrollIntoView";
 import { GetStartedModal } from "./components/GetStartedModal";
 import { SecondaryMenu } from "./components/SecondaryMenu";
 import { FrequencyCard } from "./components/FrequencyCard";
 import "./App.css";
+import "./fonts/GeorgiaRegularFont.ttf";
+import "./fonts/PoppinsRegular.ttf";
 import { makeStyles } from "@material-ui/core/styles";
 import { FrequencyTypes } from "./helpers/utils";
 import { HamburgerMenuIcon } from "./svgs/HamburgerMenuIcon";
 import { SearchIcon } from "./svgs/SearchIcon";
 import { AppLogo } from "./svgs/AppLogo";
 import { ReviewExample } from "./svgs/ReviewExample";
-import { CommunityOrientedIcon } from "./svgs/CommunityOrientedIcon";
-import { CleanAssGuarantee } from "./svgs/CleanAssGuarantee";
-import { Biodegradable } from "./svgs/Biodegradable";
-import { CancelAnyTime } from "./svgs/CancelAnyTime";
-import { FreeShipping } from "./svgs/Freeshipping";
-import { CustomerSupport } from "./svgs/CustomerSupport";
-
+import { TeamWorkSection } from "./components/TeamWorkSection";
+import { TeamMembersSection } from "./components/TeamMembersSection";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +38,9 @@ function App() {
   const [scrollToThirdSection, setScrollToThirdSection] = useState(false);
   const [scrollToReviewSection, setScrollToReviewSection] = useState(false);
   const [scrollToTeamWorkSection, setScrollToTeamWorkSection] = useState(false);
+  const [scrollToOurTeamSection, setScrollToOurTeamSection] = useState(false);
+
+  const [expanded1, setExpanded1] = useState(false);
 
   const [scrollToBottomSection, setScrollToBottomSection] = useState(false);
   const [frequencyType, setFrequencyType] = useState(FrequencyTypes.aficionado);
@@ -90,6 +94,11 @@ function App() {
         setScrollToTeamWorkSection(false);
       }, 1000);
     } else if (id === 5) {
+      setScrollToOurTeamSection(true);
+      setTimeout(() => {
+        setScrollToOurTeamSection(false);
+      }, 1000);
+    } else if (id === 6) {
       setScrollToBottomSection(true);
       setTimeout(() => {
         setScrollToBottomSection(false);
@@ -108,6 +117,10 @@ function App() {
 
   const handleClickAssociate = () => {
     setFrequencyType(FrequencyTypes.associate);
+  };
+
+  const handleExpand1 = () => {
+    setExpanded1(!expanded1);
   };
 
   return (
@@ -143,9 +156,9 @@ function App() {
           >
             Get Started
           </Button>
-          <div className="ios-drop-down-arrow">
+          {/* <div className="ios-drop-down-arrow">
             <IoIosArrowDropdown onClick={handleClickArrowDownButton} />
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -225,21 +238,38 @@ function App() {
       </ScrollIntoView>
 
       <ScrollIntoView shouldScroll={scrollToTeamWorkSection}>
-        <div className="App-section4">
-          <div className="section-divider" />
+        <TeamWorkSection />
+      </ScrollIntoView>
 
-          <p className="section3-title">TeamWork</p>
-          <p className="section3-body1">
-            Here are some reason why you can trust our product
-          </p>
-          <div>
-            <CommunityOrientedIcon/>
-            <CleanAssGuarantee/>
-            <Biodegradable />
-            <CancelAnyTime />
-            <FreeShipping />
-            <CustomerSupport />
+      <ScrollIntoView shouldScroll={scrollToOurTeamSection}>
+        <TeamMembersSection />
+      </ScrollIntoView>
+
+      <ScrollIntoView shouldScroll={scrollToOurTeamSection}>
+        <div className="App-section">
+          <div className="section-divider" />
+          <h1>FAQ</h1>
+          <div onClick={handleExpand1}>
+            <ExpansionPanel
+              square={false}
+              expanded={expanded1}
+            >
+              <div className="FAQ1">
+                How do I get started with RCA?
+              </div>
+              <ExpansionPanelDetails
+                style={{backgroundColor: '#B4D1D3'}}
+              >
+                <div
+                  style={{ visibility: expanded1 ? "visible" : "hidden" }}
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                </div>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
           </div>
+
+          <div></div>
         </div>
       </ScrollIntoView>
 
