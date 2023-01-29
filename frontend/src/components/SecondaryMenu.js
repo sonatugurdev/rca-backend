@@ -9,6 +9,7 @@ import ListItem from "@material-ui/core/ListItem";
 // import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Backdrop from "@material-ui/core/Backdrop";
+import { PlusIcon } from "./../svgs/PlusIcon";
 
 const useStyles = makeStyles({
   list: {
@@ -33,21 +34,21 @@ export function SecondaryMenu(props) {
     setOpen(open);
   };
 
-  const handleClose = (event) => {
+  const handleClose = (index) => {
     toggleDrawer(false);
-
     let id = 0;
-    const itemText = event.target.innerText;
-    if (itemText === "WHAT IT IS") {
-      id = 1;
-    } else if (itemText === "FREQUENCY") {
-      id = 2;
-    } else if (itemText === "REVIEWS") {
-      id = 3;
-    } else if (itemText === "TEAMWORK") {
-      id = 4;
-    } else if (itemText === "FAQ") {
-      id = 5;
+    if (index > -1) {
+      if (index === 0) {
+        id = 1;
+      } else if (index === 1) {
+        id = 2;
+      } else if (index === 2) {
+        id = 3;
+      } else if (index === 3) {
+        id = 4;
+      } else if (index === 4) {
+        id = 5;
+      }
     }
     props.setBurgerIconToFalseAgain(id);
   }
@@ -58,17 +59,18 @@ export function SecondaryMenu(props) {
       //   [classes.fullList]: false,
       // })}
       role="presentation"
-      onClick={handleClose}
-      onKeyDown={handleClose}
     >
       <List>
         {["WHAT IT IS", "FREQUENCY", "REVIEWS", "TEAMWORK", "FAQ"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
+          <div key={index} onClick={() => {handleClose(index)}}>
+            <ListItem button>
+              <ListItemText primary={text} className="menu-items"/>
+              <PlusIcon width="23" height="23"/>
+            </ListItem>
+            <div className="menu-item-divider" />
+          </div>
         ))}
       </List>
-      <Divider />
     </div>
   );
 
@@ -78,7 +80,7 @@ export function SecondaryMenu(props) {
         <Drawer
           anchor='left'
           open={open}
-          onClose={handleClose}        
+          onClose={() => {handleClose(-1)}}        
           BackdropComponent={Backdrop}
           BackdropProps={{
             timeout: 500,

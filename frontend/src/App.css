@@ -36,6 +36,18 @@
   margin-bottom: 20px;
 }
 
+.menu-items {
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 50px;
+  margin: 35px 80px 35px 10px;
+  font-family: "Poppins";
+}
+.menu-item-divider {
+  border-bottom: 1.5px lightgrey solid;
+  margin: 0px 25px 15px;
+}
+
 .App-section1 {
   width: 100%;
   background-color: #B4D1D3;
@@ -263,10 +275,25 @@
   margin: 10px 30px 20px;
 }
 
-.FAQ1 {
-  background-color: #B4D1D3;
+.App-section7 {
+
 }
 
+.section7-title {
+  font-size: 42px;
+  line-height: 48px;
+  font-weight: 600;
+  margin: 40px 75px;
+}
+
+.FAQ-summary {
+  font-family: "Poppins";
+  font-weight: 600;
+}
+
+.FAQ-details {
+  background-color: #B4D1D3;
+}
 
 .App-footer {
   background: black;
@@ -316,6 +343,42 @@
   right: 15px;
 }
 
+.modalCancelButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.modal-field-text{
+  opacity: 0.25;
+  font-family: "Poppins";
+  font-size: 12px;
+}
+
+.modalTitle{
+  font-family: "Poppins";
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.modalSubTitle {
+  font-family: "Georgia";
+  font-size: 13px;
+  color: #64626A;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.checkbox-labels {
+  font-size: 12px;
+}
+
+.modal-app-logo {
+  margin-top: 30px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -324,15 +387,15 @@
     transform: rotate(360deg);
   }
 }
-/* @media (max-width: 400px) {
+@media (min-width: 768px) {
   .App-section1 {
-    /* background-color: red; 
+    background-color: red; 
   }
-} */
+}
 
-@media (min-width: 500px) and (max-width: 720px) {
+@media (min-width: 481px) and (max-width: 768px) {
   .App-section1 {
-    /* background-color: blue; */
+    background-color: blue;
   }
 }
 
