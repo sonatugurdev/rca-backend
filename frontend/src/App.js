@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const handleWindowSize = (size) => {
+const handleWindowSize = () => {
+  const size = window.innerWidth;
   if (size < 481) {
     return 'mobile';
   } else if (size > 480 && size <= 768) {
@@ -51,11 +52,11 @@ function App() {
   const [shouldOpenSecondaryMenu, setShouldOpenSecondaryMenu] = useState(false);
   const [shouldGetStartedModalOpen, setShouldGetStartedModalOpen] =
     useState(false);
-  // const [windowType, setWindowType] = useState(handleWindowSize(window.innerWidth));
+  const [windowType, setWindowType] = useState('');
 
-  // useEffect(() => {
-  //   setWindowType(handleWindowSize(window.innerWidth))
-  // }, [window.innerWidth]);
+  useEffect(() => {
+    setWindowType(handleWindowSize())
+  }, []);
 
   const handleClickArrowDownButton = () => {
     // setScrollToSecondSection(true);
@@ -129,7 +130,7 @@ function App() {
 
   return (
     <div className="App">
-      {<ScrollIntoView shouldScroll={scrollToTop}>
+      {windowType === 'mobile' && <ScrollIntoView shouldScroll={scrollToTop}>
         <header className="App-header">
           <span onClick={handleSecondaryMenuOpen}>
             <HamburgerMenuIcon />
