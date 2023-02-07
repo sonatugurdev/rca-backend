@@ -16,6 +16,7 @@ import { WhatItIsSection } from "./components/WhatItIsSection";
 import { Reviews } from "./components/Reviews";
 import { ChooseFrequencySection } from "./components/ChooseFrequencySection";
 import { Header } from "./components/Header";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -139,9 +140,25 @@ function App() {
         </header>
       </ScrollIntoView>}
     
-      <Header handleGetStarted={handleGetStarted} classes={classes} />
+      <Header handleGetStarted={handleGetStarted} classes={classes} windowType={windowType}/>
+      {windowType !== 'mobile' && 
+      <div className="navigation-bar">
+        <div>WHAT IT IS</div>
+        <div>FREQUENCY</div>
+        <div>REVIEWS</div>
+        <div>TEAMWORK</div>
+        <div>FAQ</div>
+        <Button
+          className={classes.root}
+          variant="contained"
+          onClick={() => { handleGetStarted() }}
+          style={{margin: '20px'}}
+        >
+          Get Started
+        </Button>
+      </div>}
 
-      <ScrollIntoView shouldScroll={scrollToSecondSection}>
+      <ScrollIntoView shouldScroll={scrollToSecondSection} windowType={windowType}>
         <WhatItIsSection />
       </ScrollIntoView>
 
