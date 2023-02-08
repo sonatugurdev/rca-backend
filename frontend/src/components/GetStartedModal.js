@@ -77,6 +77,7 @@ export function GetStartedModal(props) {
   const [modalStyle] = React.useState(getModalStyle);
   const [openModal, setOpenModal] = React.useState(false);
   const [state, setState] = React.useState({
+    isGoodEmail: null,
     frequencyType: props.frequencyType,
     isLoading: false,
     shouldButtonDisabled: true,
@@ -90,16 +91,26 @@ export function GetStartedModal(props) {
     setOpenModal(false);
   };
 
-  const handleChangeTextField = (e) => {
+  const handleInputBlurEvent = (e) => {
     const emailVal = get(emailFieldRef, "current.value");
     const nameVal = get(nameFieldRef, "current.value");
+    const GOOD_EMAIL_REGEX = /^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$/;
+    const result = GOOD_EMAIL_REGEX.test(emailVal);
 
-    console.log(emailVal, nameVal, !state.isLoading, "SSSSS");
-    if (emailVal && nameVal && !state.isLoading) {
+    if (emailVal && nameVal && !state.isLoading & result) {
       setState((prevState) => {
         return {
           ...prevState,
           shouldButtonDisabled: false,
+          isGoodEmail: true,
+        };
+      });
+    } else if (emailVal && !result) {
+      setState((prevState) => {
+        return {
+          ...prevState,
+          shouldButtonDisabled: true,
+          isGoodEmail: false,
         };
       });
     } else {
@@ -110,7 +121,7 @@ export function GetStartedModal(props) {
         };
       });
     }
-  };
+  }
 
   const handleCheckBoxClicks = (event) => {
     Object.keys(state).map((item) => {
@@ -220,7 +231,7 @@ export function GetStartedModal(props) {
             placeholder="Full Name"
             size="small"
             variant="outlined"
-            onChange={handleChangeTextField}
+            onBlur={handleInputBlurEvent}
             inputProps={{ ref: nameFieldRef }}
           />
           <div className="modal-field-text">
@@ -231,10 +242,11 @@ export function GetStartedModal(props) {
             // label="Required"
             placeholder="Email"
             size="small"
-            onChange={handleChangeTextField}
+            onBlur={handleInputBlurEvent}
             variant="outlined"
             inputProps={{ ref: emailFieldRef }}
           />
+          {state.isGoodEmail !== null && !state.isGoodEmail && <div className="modal-field-error-text">Invalid Email</div>}
           <div>
             <p className="modal-field-text">
               <b>Subscription box frequency</b>

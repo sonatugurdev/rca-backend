@@ -387,6 +387,12 @@
   font-size: 12px;
 }
 
+.modal-field-error-text{
+  color: red;
+  font-family: "Poppins";
+  font-size: 12px;
+}
+
 .modalTitle{
   font-family: "Poppins";
   font-size: 22px;
