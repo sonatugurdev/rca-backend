@@ -19,7 +19,6 @@ export function Footer(props) {
       />
       <div className="privacy-policy">
         <span>Terms of Service</span>
-        <span>Privacy Policy</span>
       </div>
       <div className="rights-reserved">
         © 2022 Real Clean Associations. All rights reserved.

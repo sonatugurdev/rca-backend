@@ -119,14 +119,23 @@ function App() {
 
   const handleClickAficionado = () => {
     setFrequencyType(FrequencyTypes.aficionado);
+    setTimeout(() => {
+      handleGetStarted();
+    }, 300);
   };
 
   const handleClickApprentice = () => {
     setFrequencyType(FrequencyTypes.apprentice);
+    setTimeout(() => {
+      handleGetStarted();
+    }, 300);
   };
 
   const handleClickAssociate = () => {
     setFrequencyType(FrequencyTypes.associate);
+    setTimeout(() => {
+      handleGetStarted();
+    }, 300);
   };
 
   return (

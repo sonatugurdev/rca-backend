@@ -10,38 +10,38 @@ export function TeamWorkSection(props) {
   return (
     <div className="App-section5">
           <div className="section-divider" />
-          <p className="section5-title">TeamWork</p>
+          <p className="section5-title">Teamwork</p>
           <p className="section5-body1">
             Here are some reason why you can trust our product
           </p>
           <div className="teamwok-tiles">
             <div className="teamwork-tiles-each-row">
               <div>
-                <CommunityOrientedIcon />
+                <CommunityOrientedIcon width={120} height={120}/>
                 <div className="section5-body-text">Community Oriented</div>
               </div>
               <div>
-                <CleanAssGuarantee />
+                <CleanAssGuarantee width={120} height={120}/>
                 <div className="section5-body-text">Clean Ass Guarentee</div>
               </div>
             </div>
             <div className="teamwork-tiles-each-row">
               <div>
-                <Biodegradable />
+                <Biodegradable width={120} height={120}/>
                 <div className="section5-body-text">Biodegradable</div>
               </div>
               <div>
-                <CancelAnyTime />
+                <CancelAnyTime width={120} height={120}/>
                 <div className="section5-body-text">Cancel Anytime</div>
               </div>
             </div>
             <div className="teamwork-tiles-each-row">
               <div>
-                <FreeShipping />
+                <FreeShipping width={120} height={120}/>
                 <div className="section5-body-text">Free Shipping</div>
               </div>
               <div>
-                <CustomerSupport />
+                <CustomerSupport width={120} height={120}/>
                 <div className="section5-body-text">Customer Support</div>
               </div>
             </div>

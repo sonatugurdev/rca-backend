@@ -46,8 +46,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: "4px",
-      width: "25ch",
+      width: "99%",
     },
+  },
+  buttonProgress: {
+    color: 'white',
   },
   button: {
     textTransform: "none",
@@ -299,11 +302,10 @@ export function GetStartedModal(props) {
               disabled={state.shouldButtonDisabled}
               className={classes.button}
             >
-              Subscribe
-            </Button>
-            {state.isLoading && (
+              {state.isLoading ? (
               <CircularProgress size={24} className={classes.buttonProgress} />
-            )}
+            ) : <span>Subscribe</span>}
+            </Button>
           </div>
         </form>
       </div>

@@ -5,8 +5,8 @@ export const Biodegradable
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="138"
-      height="138"
+      width={width}
+      height={height}
       fill="none"
       viewBox="0 0 138 138"
     >

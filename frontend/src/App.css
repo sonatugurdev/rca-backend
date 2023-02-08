@@ -58,6 +58,7 @@
   align-items: center;
   justify-content: center;
   color: black;
+  margin-top: -1px;
 }
 
 .App-header {
@@ -208,7 +209,6 @@
 
 .frequencycard-text-1 {
   font-weight: 600;
-  margin-bottom: 5px;
   font-family: "Poppins";
 }
 
@@ -257,6 +257,7 @@
   line-height: 48px;
   font-weight: 600;
   margin: 40px 75px;
+  font-family: "Poppins";
 }
 
 .section5-body1 {
@@ -316,6 +317,7 @@
   line-height: 48px;
   font-weight: 600;
   margin: 40px 75px;
+  font-family: "Poppins";
 }
 
 .FAQ-summary {
@@ -325,6 +327,8 @@
 
 .FAQ-details {
   background-color: #B4D1D3;
+  text-align: left;
+  padding: 8px 16px 10px 16px !important;
 }
 
 .App-footer {
