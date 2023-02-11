@@ -45,8 +45,8 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     "& .MuiTextField-root": {
-      margin: "4px",
-      width: "99%",
+      margin: "4px 0",
+      width: "100%",
     },
   },
   buttonProgress: {
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "10px",
   },
   formControl: {
-    margin: "5px",
+    margin: "5px 2px",
     display: "flex",
     flexDirection: "row",
   },

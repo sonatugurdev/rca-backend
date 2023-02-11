@@ -7,7 +7,7 @@ export function WhatItIsSection(props) {
     <div className="App-section2">
       <img
         src={require('../pngs/astronaut-mobile.png')}
-        className={windowType !== 'mobile' ? "astronaut-pic" : "astronaut-pic-mobile"}
+        className={"astronaut-pic-mobile"}
       />
       <div>
         <p className="section2-title">This too shall pass!</p>

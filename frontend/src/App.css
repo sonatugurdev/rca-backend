@@ -11,7 +11,7 @@
 }
 
 .astronaut-pic-mobile {
-  width: 100%;
+  width: -webkit-fill-available;
 }
 
 @media (prefers-reduced-motion: no-preference) {
